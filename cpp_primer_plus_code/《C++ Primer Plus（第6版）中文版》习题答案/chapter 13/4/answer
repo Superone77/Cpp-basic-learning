@@ -1,0 +1,4 @@
+b）由于 Port 存在深拷贝的需要，拷贝构造函数 Port(const Port & p)、析构函数 ~Port()、赋值运算符重载 Port & operator=(const Port & p) 等三个成员函数不能使用编译器自动生成的潜拷贝版本，所以必须重写定义；其他成员函数编译器不会自动生成，按功能需要，必须得自行定义；
+
+c）语法上，operator=()可声明为虚函数，语义上，operator=()声明为虚函数是无意义的且易导致误解。派生类虚函数必须与基类虚函数的函数签名必须一致才能产生多态特性，而声明operator=()时，基类为operator=(const Port& port)、派生类为operator=(const VintagePort& vintage)，两者函数签名不一致，即便声明为virtual，也无法体现出多态特性，故，通常不将operator=()定为虚函数，声明虚函数反而容易引起误解；
+operator<<() 为友元而非成员函数，不满足“只有成员函数才能成为虚函数”的语法要求；

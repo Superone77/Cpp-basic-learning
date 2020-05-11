@@ -1,0 +1,21 @@
+Why is no assignment operator defined?
+——abstr_emp、employee、manager、fink、highfink 等五个类内部并未涉及动态内存分配，并非深拷贝，因此，无须定义赋值运算符、拷贝构造函数、析构函数。
+
+Why are ShowAll() and SetAll() virtual?
+为什么要将 ShowAll() 和 SetAll() 定义为虚的？
+——各级派生类均有各自新增的数据成员，显示、设置新增数据成员必须由派生类自行负责，无法直接复用基类的 ShowAll() 和 SetAll() 成员函数，在这两类操作上，派生类需要体现出类的多态特性。
+
+Why is abstr_emp a virtual base class?
+——若 abstr_emp 按一般方式派生出 manager、fink，而 manager、fink 派生出 highfink，highfink 将包含两份 abstr_emp 的数据成员，必须将 abstr_emp 通过 virtual 方式派生出 manager、fink，才能正常地只包含一份 abstr_emp 的数据成员。
+
+Why does the highfink class have no data section?
+——highfink 通过 manager、fink 多重继承而来，无须新增数据成员。
+
+Why is only one version of operator<<() needed?
+——friend std::ostream & operator<<(std::ostream & os, const abstr_emp & e) 的形参是基类引用，各派生类实现了各自的 virtual ShowAll() 函数，因此，operator<<() 在内部通过多态特性调用基类和派生类各自的 ShowAll() 实现输出。但是，书上的原型声明 virtual void ShowAll() const 有误，应改为 virtual std::ostream& ShowAll(std::ostream& os) const;
+
+What would happen if the end of the program were replaced with this code?
+abstr_emp tri[4] = {em, fi, hf, hf2};
+for (int i = 0; i < 4; i++)
+	tri[i].ShowAll();
+——语法错误，由于 abstr_emp 中含有纯虚成员函数，所以 abstr_emp 为抽象类，抽象类无法创建对象。

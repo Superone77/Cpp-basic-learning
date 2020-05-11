@@ -1,0 +1,6 @@
+PROJECT(main)
+SET(SRC_LIST main.cpp TTime.cpp)
+SET(CMAKE_CXX_COMPILER "clang++")
+SET(CMAKE_CXX_FLAGS "-std=c++11 -Werror -Weverything -Wno-float-equal -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-global-constructors -Wno-exit-time-destructors -Wno-missing-prototypes -Wno-padded -O3")
+SET(CMAKE_BUILD_TYPE Release)
+ADD_EXECUTABLE(main ${SRC_LIST})
