@@ -1,0 +1,6 @@
+PROJECT(main)
+SET(SRC_LIST main.cpp)
+SET(CMAKE_CXX_COMPILER "clang++")
+SET(CMAKE_CXX_FLAGS "-std=c++11 -Weverything -O3")
+SET(CMAKE_BUILD_TYPE Release)
+ADD_EXECUTABLE(main ${SRC_LIST})
