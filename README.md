@@ -34,7 +34,7 @@ http://dsa.cs.tsinghua.edu.cn/~deng/ds/src_link/index.htm)
 
 详见
 
-[基于dijkstra算法的AGV](https://github.com/Superone77/AGV_dijkstra/tree/master)
+[基于dijkstra算法的AGV路径规划](https://github.com/Superone77/AGV_dijkstra/tree/master)
 
 
 
